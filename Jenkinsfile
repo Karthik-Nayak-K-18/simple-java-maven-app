@@ -52,10 +52,8 @@ pipeline {
             steps {
                 echo 'Deploying to Kubernetes cluster'
                     sh """
-                        pwd
-                        ls -l
-                        kubectl apply -f app-deployment.yaml
-                        kubectl apply -f app-service.yaml
+                        kubectl apply -f app-deployment.yml
+                        kubectl apply -f app-service.yml
                     """
             }
         }
