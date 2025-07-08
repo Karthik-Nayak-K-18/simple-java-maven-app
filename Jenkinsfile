@@ -41,5 +41,15 @@ pipeline {
                  }
             }
         }   
+
+        stage('kubernetes deploy') {
+            steps {
+                echo 'Deploying to Kubernetes cluster'
+                sh '''
+                    kubectl apply -f k8s/deployment.yaml
+                    kubectl apply -f k8s/service.yaml
+                '''
+            }
+        }
     }
 }
