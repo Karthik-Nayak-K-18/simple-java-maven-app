@@ -16,4 +16,4 @@ spec:
       - name: java-maven-container
         image: karthiknayak18/simple-java-maven-app:latest
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
