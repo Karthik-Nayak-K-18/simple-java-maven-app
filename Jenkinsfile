@@ -27,20 +27,18 @@ pipeline {
             }
         }
 
-        stage('build') {
+        stage('Docker Build & Push') {
             steps {
-                echo 'building docker image'
-                sh 'docker build -t simple-java-maven-app .'
-            }
-        }
+                echo 'Building Docker image and pushing to Docker Hub'
 
-        stage ('push') {
-            steps {
-                echo 'pushing docker image to docker hub'
-                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                sh 'docker tag simple-java-maven-app:latest karthiknayak/simple-java-maven-app:latest'
-                sh 'docker push karthiknayak/simple-java-maven-app:latest'
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+            sh '''
+                docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                docker build -t $DOCKER_USERNAME/simple-java-maven-app:latest .
+                docker push $DOCKER_USERNAME/simple-java-maven-app:latest
+            '''
+                 }
             }
-        }
+        }   
     }
 }
