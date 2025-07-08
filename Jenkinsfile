@@ -10,7 +10,7 @@ pipeline {
         stage('git checkout') {
             steps {
                 echo 'checkout to remote git repo'
-                sh "git checkout: master, url: https://github.com/Karthik-Nayak-K-18/simple-java-maven-app.git"
+                sh "git branch: master, url: https://github.com/Karthik-Nayak-K-18/simple-java-maven-app.git"
             }
         }
         stage('compile') {
