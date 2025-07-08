@@ -26,5 +26,21 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
+        stage('build') {
+            steps {
+                echo 'building docker image'
+                sh 'docker build -t simple-java-maven-app .'
+            }
+        }
+
+        stage ('push') {
+            steps {
+                echo 'pushing docker image to docker hub'
+                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                sh 'docker tag simple-java-maven-app:latest karthiknayak/simple-java-maven-app:latest'
+                sh 'docker push karthiknayak/simple-java-maven-app:latest'
+            }
+        }
     }
 }
