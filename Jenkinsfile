@@ -46,8 +46,8 @@ pipeline {
             steps {
                 echo 'Deploying to Kubernetes cluster'
                 sh '''
-                    kubectl apply -f simple-java-maven-app/app-deployment.yaml
-                    kubectl apply -f simple-java-maven-app/app-service.yaml
+                    kubectl apply -f /home/jenkins/simple-java-maven-app/app-deployment.yaml
+                    kubectl apply -f /home/jenkins/simple-java-maven-app/app-service.yaml
 
                 '''
             }
