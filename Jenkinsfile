@@ -17,14 +17,14 @@ pipeline {
         stage('compile') {
             steps {
                 echo 'compiling source code'
-                sh "mvn clean package"
+                sh 'mvn clean package'
             }
         }
 
         stage('test') {
             steps {
                 echo 'running unit tests'
-                sh "mvn test"
+                sh 'mvn test'
             }
         }
     }
