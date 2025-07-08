@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('git checkout') {
             steps {
                 echo 'checkout to remote git repo'
@@ -46,6 +52,8 @@ pipeline {
             steps {
                 echo 'Deploying to Kubernetes cluster'
                     sh """
+                        pwd
+                        ls -l
                         kubectl apply -f app-deployment.yaml
                         kubectl apply -f app-service.yaml
                     """
