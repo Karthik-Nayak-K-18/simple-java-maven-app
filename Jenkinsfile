@@ -50,7 +50,7 @@ pipeline {
 
         stage('kubernetes deploy') {
             steps {
-                withEnv(["KUBECONFIG=/home/jenkins/.kube/config"]) {  // or /var/lib/jenkins/.kube/config if copied
+                withEnv(["KUBECONFIG=/var/lib/jenkins/.kube/config"]) {  // or /var/lib/jenkins/.kube/config if copied
                 echo 'Deploying to Kubernetes cluster'
                     sh """
                         kubectl apply -f app-deployment.yml
